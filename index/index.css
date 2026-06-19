@@ -1,0 +1,62 @@
+/* index.css — 배치 전용 (컴포넌트 너비는 각 CSS 파일이 담당) */
+
+.main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 1200px;
+    max-width: 1200px;
+    margin: 30px auto;
+    align-items: stretch;
+}
+
+/* 모바일 */
+@media (max-width: 1024px) {
+    .main-layout {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0;
+        margin: 0 auto;
+        flex-direction: column;
+        gap: 10px; /* 구분선 두께 */
+        background-color: var(--color-surface, #f7f7f7); /* 구분선 색상 */
+    }
+
+    /* 컴포넌트별 공통 여백 및 배경색 지정 */
+    .main-layout > div {
+        width: 100%;
+        background-color: var(--color-white, #fff);
+        padding: 30px 24px;
+    }
+
+    /* notice-row 내부 구분선 처리 */
+    .main-layout > .notice-row {
+        padding: 0; /* 자체 패딩 제거 */
+        background-color: var(--color-surface, #f7f7f7);
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .notice-row > div {
+        background-color: var(--color-white, #fff);
+        padding: 30px 24px;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .main-layout {
+        gap: 2.5vw;
+    }
+
+    .main-layout > div,
+    .notice-row > div {
+        padding: 6.25vw 5vw;
+    }
+    
+    .main-layout > .notice-row {
+        gap: 2.5vw;
+        padding: 0;
+    }
+}

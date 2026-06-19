@@ -1,0 +1,237 @@
+.notice-row {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.notice {
+    box-sizing: border-box;
+    width: 800px;
+    min-width: 800px;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 0;
+}
+
+.notice__header {
+    box-sizing: border-box;
+    width: calc(100% + 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.notice__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.notice__more {
+    font-weight: 600;
+    color: #4a7c42;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.notice__more:hover {
+    color: #4a7c42;
+}
+
+.notice__nav {
+    box-sizing: border-box;
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    padding: 0 20px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.notice__tab {
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #333;
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.notice__tab:not(.notice__tab--active):hover {
+    background-color: #f7f7f7;
+}
+
+.notice__tab--active {
+    border: 1px solid #4a7c42;
+    color: #ffffff;
+    background-color: #4a7c42;
+}
+
+.notice__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.notice__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.notice__item:last-child {
+    border-bottom: none;
+}
+
+.notice__item:hover {
+    color: #4a7c42;
+}
+
+.notice__item:hover .notice__item-title {
+    text-decoration: underline;
+}
+
+.notice__dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4a7c42;
+    margin-right: 4px;
+}
+
+.notice__item-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notice__date {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.notice__list--hidden {
+    display: none;
+}
+
+/* ==========================================
+   반응형 통합 (1024px 기준)
+========================================== */
+@media (max-width: 1024px) {
+    .notice {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .notice-row {
+        width: 100%;
+        min-width: 0;
+        flex-direction: column;
+    }
+
+    .notice__header {
+        width: calc(100% + 48px);
+        margin: -12px -24px 20px;
+        padding: 0 24px 18px;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .notice__title {
+        font-size: 18px;
+    }
+
+    .notice__nav {
+        width: calc(100% + 40px);
+        margin: 0 -20px;
+        gap: 16px;
+    }
+
+    .notice__tab {
+        padding: 6px 14px;
+        font-size: 14px;
+        white-space: nowrap;
+        border-radius: 999px;
+    }
+
+    .notice__item-title {
+        font-size: 14px;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .notice__header {
+        width: calc(100% + 10vw);
+        margin: -2.25vw -5vw 4vw;
+        padding: 0 5vw 4vw;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .notice__title {
+        font-size: 4.5vw;
+    }
+
+    .notice__more {
+        font-size: 3.13vw;
+    }
+
+    .notice__nav {
+        width: calc(100% + 8.33vw);
+        margin: 0 -4.17vw;
+        padding: 0 4.17vw 3.33vw;
+        gap: 3.33vw;
+    }
+
+    .notice__tab {
+        padding: 1.25vw 2.92vw;
+        font-size: 2.92vw;
+        border-radius: 20.83vw;
+    }
+
+    .notice__item {
+        padding: 2.92vw 4.17vw;
+        gap: 3.33vw;
+    }
+
+    .notice__item-title {
+        font-size: 3.13vw;
+    }
+
+    .notice__date {
+        font-size: 2.71vw;
+    }
+
+    .notice__dot {
+        width: 1.25vw;
+        height: 1.25vw;
+        margin-right: 0.83vw;
+    }
+}

@@ -1,0 +1,206 @@
+.recommended-parks {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.recommended-parks__header {
+    box-sizing: border-box;
+    width: calc(100% + 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.recommended-parks__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.recommended-parks__more {
+    color: #4a7c42;
+    font-weight: 600;
+}
+
+.recommended-parks__more:hover {
+    color: #4a7c42;
+}
+
+.recommended-parks__content {
+    display: block;
+}
+
+.park-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    min-height: 250px;
+}
+
+.park-card {
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: #2d3e2a;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.park-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.65) 100%);
+    z-index: 2;
+}
+
+.park-card__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.park-card__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    text-align: center;
+}
+
+.park-card__content strong {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.park-card__content p {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.95;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   반응형 통합 (1024px 기준)
+========================================== */
+@media (max-width: 1024px) {
+    .recommended-parks {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+    }
+
+    .recommended-parks__header {
+        width: calc(100% + 48px);
+        margin: -12px -24px 20px;
+        padding: 0 24px 18px;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .recommended-parks__title {
+        font-size: 18px;
+    }
+
+    .park-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .park-card__video {
+        display: none;
+    }
+
+    .park-card--seorak {
+        background-image: url('../images/park-card--seorak-poster.jpg');
+    }
+
+    .park-card--jiri {
+        background-image: url('../images/park-card--jiri-poster.jpg');
+    }
+
+    .park-card--hallyeo {
+        background-image: url('../images/park-card--hallyeo-poster.jpg');
+    }
+
+    .park-card--taebaek {
+        background-image: url('../images/park-card--taebaek-poster.jpg');
+    }
+
+    .park-card {
+        padding: 16px;
+    }
+
+    .park-card__content strong {
+        font-size: 16px;
+    }
+
+    .park-card__content p {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .recommended-parks__header {
+        width: calc(100% + 10vw);
+        margin: -2.25vw -5vw 4vw;
+        padding: 0 5vw 4vw;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .recommended-parks__title {
+        font-size: 4.5vw;
+    }
+
+    .recommended-parks__more {
+        font-size: 3.13vw;
+    }
+
+    .park-grid {
+        gap: 2.92vw;
+    }
+
+    .park-card {
+        padding: 3.33vw;
+        border-radius: 5vw;
+    }
+
+    .park-card__content strong {
+        font-size: 3.33vw;
+        margin-bottom: 1.67vw;
+    }
+
+    .park-card__content p {
+        font-size: 2.5vw;
+        line-height: 1.35;
+        padding: 1.67vw 2.5vw;
+        border-radius: 2.5vw;
+    }
+}

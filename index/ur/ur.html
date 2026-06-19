@@ -1,0 +1,137 @@
+<section class="ur">
+    <!-- 헤더 -->
+    <div class="ur__header">
+        <h2 class="ur__title">통합예약</h2>
+    </div>
+
+    <!-- 01 시설 및 지역 선택 -->
+    <div class="ur__section">
+        <div class="ur__section-header">
+            <span class="ur__step-number">01</span>
+            <span class="ur__step-label">시설 및 지역 선택</span>
+        </div>
+        <div class="ur__top">
+            <div class="ur__facility-wrap">
+                <div class="ur__facility">
+                    <button class="ur__facility-item" data-facility="shelter">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-shelter"></use></svg>
+                        <span>대피소</span>
+                    </button>
+                    <button class="ur__facility-item" data-facility="camping">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-camping"></use></svg>
+                        <span>야영장</span>
+                    </button>
+                    <button class="ur__facility-item" data-facility="village">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-village"></use></svg>
+                        <span>민박촌</span>
+                    </button>
+                    <button class="ur__facility-item" data-facility="nature">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-nature"></use></svg>
+                        <span>생태탐방원</span>
+                    </button>
+                    <button class="ur__facility-item" data-facility="trail">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-trail"></use></svg>
+                        <span>탐방로예약제</span>
+                    </button>
+                    <button class="ur__facility-item" data-facility="program">
+                        <svg class="ur__facility-icon" aria-hidden="true"><use href="#icon-program"></use></svg>
+                        <span>탐방프로그램</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="ur__park-wrap">
+                <div class="ur__park-list">
+                    <button class="ur__park">설악산</button>
+                    <button class="ur__park">오대산</button>
+                    <button class="ur__park">북한산</button>
+                    <button class="ur__park">치악산</button>
+                    <button class="ur__park">속리산</button>
+                    <button class="ur__park">태백산</button>
+                    <button class="ur__park">소백산</button>
+                    <button class="ur__park">월악산</button>
+                    <button class="ur__park">태안해안</button>
+                    <button class="ur__park">계룡산</button>
+                    <button class="ur__park">주왕산</button>
+                    <button class="ur__park">팔공산</button>
+                    <button class="ur__park">덕유산</button>
+                    <button class="ur__park">경주</button>
+                    <button class="ur__park">가야산</button>
+                    <button class="ur__park">변산반도</button>
+                    <button class="ur__park">내장산</button>
+                    <button class="ur__park">지리산</button>
+                    <button class="ur__park">무등산</button>
+                    <button class="ur__park">월출산</button>
+                    <button class="ur__park">한려해상</button>
+                    <button class="ur__park">다도해해상</button>
+                    <button class="ur__park">한라산</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ur__section-divider"></div>
+
+    <!-- 02 날짜 선택 -->
+    <div class="ur__section">
+        <div class="ur__section-header">
+            <span class="ur__step-number">02</span>
+            <span class="ur__step-label">날짜 선택</span>
+        </div>
+        <div class="ur__calendar">
+        <div class="ur__calendar-group">
+            <label class="ur__calendar-label" for="ur-date-in">입실일</label>
+            <div class="ur__divider"></div>
+            <input type="date" id="ur-date-in" class="ur__calendar-input">
+        </div>
+        <span class="ur__calendar-separator">~</span>
+        <div class="ur__calendar-group">
+            <label class="ur__calendar-label" for="ur-date-out">퇴실일</label>
+            <div class="ur__divider"></div>
+            <input type="date" id="ur-date-out" class="ur__calendar-input">
+        </div>
+        </div>
+    </div>
+
+    <div class="ur__section-divider"></div>
+
+    <!-- 03 인원 선택 -->
+    <div class="ur__section">
+        <div class="ur__section-header">
+            <span class="ur__step-number">03</span>
+            <span class="ur__step-label">인원 선택</span>
+        </div>
+        <div class="ur__people">
+            <div class="ur__people-group">
+                <span class="ur__people-label">성인</span>
+                <div class="ur__divider"></div>
+                <div class="ur__people-control">
+                    <button class="ur__qty-button qty-minus" data-target="adult">−</button>
+                    <span class="ur__qty" id="ur-adult">2</span>
+                    <button class="ur__qty-button qty-plus" data-target="adult">+</button>
+                </div>
+            </div>
+            <div class="ur__people-group">
+                <span class="ur__people-label">어린이</span>
+                <div class="ur__divider"></div>
+                <div class="ur__people-control">
+                    <button class="ur__qty-button qty-minus" data-target="child">−</button>
+                    <span class="ur__qty" id="ur-child">0</span>
+                    <button class="ur__qty-button qty-plus" data-target="child">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ur__section-divider"></div>
+
+    <!-- 예약 문의 + 전화번호 + 예약하기 (좌/중/우) -->
+    <div class="ur__contact">
+        <div class="ur__contact-info">
+            <span class="ur__contact-time">고객센터(AM 09~PM 06)</span>
+            <span class="ur__contact-desc">시설·탐방프로그램 예약 문의</span>
+        </div>
+        <strong class="ur__contact-phone">1670-9201</strong>
+        <button class="ur__submit">예약하기</button>
+    </div>
+</section>

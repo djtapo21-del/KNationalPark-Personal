@@ -1,0 +1,453 @@
+/* ==========================================
+   지도 콘텐츠 감싸는 회색 라운드 박스
+========================================== */
+
+.map-container {
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    padding: 30px;
+    background: #ffffff;
+}
+
+.map-container__header {
+    box-sizing: border-box;
+    width: calc(100% + 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.map-container__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    text-align: left;
+}
+
+/* ==========================================
+   지도 이미지 영역
+========================================== */
+.map-container__image-area {
+    position: relative;
+    display: block;
+    min-width: 0;
+    align-self: center;
+}
+
+.map-container__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ==========================================
+   국립공원 마커
+========================================== */
+.park-marker {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 16px;
+    line-height: 1;
+    white-space: nowrap;
+    background: #ffffff;
+    border: 1px solid #4a7c42;
+    border-radius: 999px;
+    color: #4a7c42;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.park-marker:hover,
+.park-marker--active {
+    background: #4a7c42;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+
+.park-marker--active {
+    z-index: 11;
+}
+
+.park-marker:hover {
+    z-index: 10;
+}
+
+/* 통제 상태별 색상 테마 */
+.park-marker[data-status="closed"] {
+    background: #ffffff;
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.park-marker[data-status="closed"]:hover,
+.park-marker[data-status="closed"].park-marker--active {
+    background: #e74c3c;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+
+.park-marker[data-status="partial"] {
+    background: #ffffff;
+    border-color: #f1731f;
+    color: #f1731f;
+}
+
+.park-marker[data-status="partial"]:hover,
+.park-marker[data-status="partial"].park-marker--active {
+    background: #f1731f;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+
+/* 국립공원별 개별 위치 */
+.park-marker[data-park-id="seorak"] {
+    top: 8%;
+    left: 70%;
+}
+
+.park-marker[data-park-id="odae"] {
+    top: 17%;
+    left: 75%;
+}
+
+.park-marker[data-park-id="bukhan"] {
+    top: 20%;
+    left: 35%;
+}
+
+.park-marker[data-park-id="chiak"] {
+    top: 24%;
+    left: 62%;
+}
+
+.park-marker[data-park-id="soakri"] {
+    top: 35%;
+    left: 57%;
+}
+
+.park-marker[data-park-id="taebaek"] {
+    top: 24%;
+    left: 85%;
+}
+
+.park-marker[data-park-id="sobaek"] {
+    top: 32%;
+    left: 80%;
+}
+
+.park-marker[data-park-id="worak"] {
+    top: 30%;
+    left: 63%;
+}
+
+.park-marker[data-park-id="taean"] {
+    top: 35%;
+    left: 18%;
+}
+
+.park-marker[data-park-id="gyeryong"] {
+    top: 42%;
+    left: 44%;
+}
+
+.park-marker[data-park-id="juwang"] {
+    top: 42%;
+    left: 85%;
+}
+
+.park-marker[data-park-id="palgong"] {
+    top: 48%;
+    left: 75%;
+}
+
+.park-marker[data-park-id="deogyu"] {
+    top: 51%;
+    left: 48%;
+}
+
+.park-marker[data-park-id="gyeongju"] {
+    top: 53%;
+    left: 87%;
+}
+
+.park-marker[data-park-id="gaya"] {
+    top: 56%;
+    left: 61%;
+}
+
+.park-marker[data-park-id="byeonsan"] {
+    top: 50%;
+    left: 15%;
+}
+
+.park-marker[data-park-id="naejang"] {
+    top: 55%;
+    left: 30%;
+}
+
+.park-marker[data-park-id="jiri"] {
+    top: 61%;
+    left: 52%;
+}
+
+.park-marker[data-park-id="mudeung"] {
+    top: 65%;
+    left: 15%;
+}
+
+.park-marker[data-park-id="wolchul"] {
+    top: 71%;
+    left: 31%;
+}
+
+.park-marker[data-park-id="hallyeo"] {
+    top: 72%;
+    left: 60%;
+}
+
+.park-marker[data-park-id="dadohae"] {
+    top: 78%;
+    left: 24%;
+}
+
+.park-marker[data-park-id="halla"] {
+    top: 88%;
+    left: 18%;
+}
+
+/* ==========================================
+   날씨 정보 카드 (말풍선 디자인)
+========================================== */
+.weather-card {
+    position: absolute;
+    transform: translate(-50%, 0);
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 12px 20px;
+    z-index: 100;
+    white-space: nowrap;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    margin-top: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.weather-card--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 5px);
+}
+
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ffffff;
+}
+
+.weather-row {
+    font-size: 16px;
+    color: #333;
+    line-height: 2;
+    font-weight: 600;
+}
+
+/* ==========================================
+   우측 하단 안내 가이드
+========================================== */
+.map-container__guide {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    pointer-events: none;
+}
+
+.map-container__legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.map-container__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+.legend-swatch {
+    width: 26px;
+    height: 12px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+}
+
+.legend-swatch--normal {
+    background: #e8f6e9;
+    border-color: #4a7c42;
+}
+
+.legend-swatch--closed {
+    background: #ffeded;
+    border-color: #e74c3c;
+}
+
+.legend-swatch--partial {
+    background: #fff8ee;
+    border-color: #f1731f;
+}
+
+.map-container__guide p {
+    font-size: 14px;
+    color: #4a7c42;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 600;
+    background: #ffffff;
+    padding: 10px 16px;
+    border-radius: 15px;
+    border: 1px solid #7aaa6e;
+    text-align: center;
+}
+
+/* ==========================================
+   반응형 통합 (1024px 기준)
+========================================== */
+@media (max-width: 1024px) {
+    .map-container {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+    }
+
+    .map-container__header {
+        width: calc(100% + 48px);
+        margin: -12px -24px 20px;
+        padding: 0 24px 18px;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .map-container__title {
+        font-size: 18px;
+    }
+
+    .park-marker {
+        font-size: 14px;
+        padding: 5px 12px;
+    }
+
+    .map-container__guide {
+        bottom: 2%;
+        right: 2%;
+        gap: 15px;
+    }
+
+    .map-container__legend-item {
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .legend-swatch {
+        width: 22px;
+        height: 10px;
+    }
+
+    .map-container__guide p {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .map-container__header {
+        width: calc(100% + 10vw);
+        margin: -2.25vw -5vw 4vw;
+        padding: 0 5vw 4vw;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .map-container__title {
+        font-size: 4.5vw;
+    }
+
+    .park-marker {
+        font-size: 2.92vw;
+        padding: 1.04vw 2.5vw;
+    }
+
+    .map-container__guide {
+        bottom: 4.17vw;
+        right: 4.17vw;
+        gap: 3.13vw;
+    }
+
+    .map-container__legend-item {
+        font-size: 2.92vw;
+        gap: 1.67vw;
+    }
+
+    .legend-swatch {
+        width: 4.58vw;
+        height: 2.08vw;
+    }
+
+    .map-container__guide p {
+        font-size: 2.92vw;
+        padding: 2.08vw 3.33vw;
+        border-radius: 3.13vw;
+    }
+
+    .weather-card {
+        border-radius: 3.13vw;
+        padding: 2.5vw 4.17vw;
+        margin-top: 1.04vw;
+    }
+
+    .weather-card::before {
+        top: -1.46vw;
+        border-left: 1.46vw solid transparent;
+        border-right: 1.46vw solid transparent;
+        border-bottom: 1.46vw solid #ffffff;
+    }
+
+    .weather-row {
+        font-size: 3.33vw;
+        line-height: 2;
+    }
+}

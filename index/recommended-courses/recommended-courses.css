@@ -1,0 +1,319 @@
+.recommended-courses {
+    box-sizing: border-box;
+    width: 610px;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+.recommended-courses__header {
+    box-sizing: border-box;
+    width: calc(100% + 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.recommended-courses__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.recommended-courses__more {
+    color: #4a7c42;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.recommended-courses__more:hover {
+    color: #4a7c42;
+}
+
+.recommended-courses__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* ── Carousel Wrapper ── */
+.carousel-wrap {
+    overflow: hidden;
+    width: auto;
+    margin: 0 38px;
+    border-radius: 12px;
+}
+
+/* ── Course List ── */
+.course-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+/* ── Each slide: 3 cards stacked vertically ── */
+.carousel-slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+/* ── Course Card ── */
+.course-card {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e2e2e2;
+    border-radius: 16px;
+    background-color: #ffffff;
+    color: #333;
+    text-decoration: none;
+}
+
+.course-card:hover {
+    background-color: #f7f7f7;
+}
+
+.course-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.course-card__body strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.course-card__body span {
+    display: block;
+    font-size: 14px;
+    color: #777;
+}
+
+.course-card__route {
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a7c42;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.course-card__level {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.course-card__level--low {
+    background: #e8f6e9;
+    color: #4a7c42;
+}
+
+.course-card__level--mid {
+    background: #fff9e6;
+    color: #b8860b;
+}
+
+.course-card__level--high {
+    background: #ffe8e8;
+    color: #c0392b;
+}
+
+/* ── Arrow Buttons ── */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 20px;
+    height: 48px;
+    border: none;
+    background: transparent;
+    color: #4a7c42;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    transition: opacity 0.2s;
+}
+
+.carousel-btn:disabled {
+    color: #e2e2e2;
+    cursor: default;
+}
+
+.carousel-btn img,
+.carousel-btn svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+}
+
+.carousel-btn__icon {
+    width: 32px;
+    height: 32px;
+}
+
+.carousel-btn--prev {
+    left: 0;
+}
+
+.carousel-btn--next {
+    right: 0;
+}
+
+/* ── Dot Indicator (Mobile) ── */
+.carousel-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #e2e2e2;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-dot.active {
+    background-color: #4a7c42;
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* ==========================================
+   반응형 통합 (1024px 기준)
+========================================== */
+@media (max-width: 1024px) {
+    .recommended-courses {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+    }
+
+    .recommended-courses__header {
+        width: calc(100% + 48px);
+        margin: -12px -24px 20px;
+        padding: 0 24px 18px;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .recommended-courses__title {
+        font-size: 18px;
+    }
+
+    .course-card {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        padding: 12px 14px;
+        height: 76px;
+    }
+
+    .course-card__level {
+        margin-top: 0;
+    }
+
+    .carousel-wrap {
+        margin: 0;
+    }
+
+    .carousel-btn {
+        display: none !important;
+    }
+
+    .carousel-dots {
+        display: flex;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .recommended-courses__header {
+        width: calc(100% + 10vw);
+        margin: -2.25vw -5vw 4vw;
+        padding: 0 5vw 4vw;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .recommended-courses__title {
+        font-size: 4.5vw;
+    }
+
+    .recommended-courses__more {
+        font-size: 3.13vw;
+    }
+
+    .course-card {
+        padding: 2.5vw 2.92vw;
+        height: 15.83vw;
+    }
+
+    .course-card__body strong {
+        font-size: 3.33vw;
+        margin-bottom: 1.25vw;
+    }
+
+    .course-card__body span {
+        font-size: 2.92vw;
+    }
+
+    .course-card__route {
+        padding: 1.25vw 2.5vw;
+        font-size: 2.71vw;
+    }
+
+    .course-card__level {
+        font-size: 2.71vw;
+        padding: 1.25vw 2.08vw;
+    }
+
+    .carousel-wrap {
+        margin: 0 2.5vw;
+    }
+
+    .carousel-dots {
+        margin-top: 3.75vw;
+        gap: 1.67vw;
+    }
+
+    .carousel-dot {
+        width: 1.67vw;
+        height: 1.67vw;
+    }
+
+    .carousel-dot.active {
+        width: 5vw;
+    }
+}

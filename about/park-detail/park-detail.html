@@ -1,0 +1,219 @@
+<section class="park-detail-container">
+    <!-- 통합 헤더 영역 -->
+    <div class="park-detail-container__header">
+        <h2 class="park-detail-container__title">공원 상세 정보</h2>
+    </div>
+
+    <div class="park-detail-container__body">
+        <!-- [좌측 영역] 지역선택 -->
+        <div class="park-detail-left-panel">
+            <div class="rs-controls-wrapper">
+                <div class="rs-filter-group">
+                    <select id="rs-sido" class="rs-select">
+                        <option value="">전체 시/도</option>
+                    </select>
+                    <select id="rs-sigungu" class="rs-select">
+                        <option value="">전체 시/군/구</option>
+                    </select>
+                </div>
+                <!-- 드롭다운 높이와 완벽 정합된 테두리 리스트 박스 -->
+                <div class="rs-list-container">
+                    <div class="rs-list" id="rs-park-list"></div>
+                </div>
+            </div>
+
+            <div class="rs-divider"></div>
+
+            <div class="rs-map-area">
+                <img src="/images/korea_map.png" alt="한국 국립공원 지도" class="rs-map-image" draggable="false" />
+                <div class="rs-map-guide">
+                    <div class="rs-map-legend">
+                        <div class="rs-map-legend__item">
+                            <span class="rs-legend-swatch rs-legend-swatch--normal"></span> 정상
+                        </div>
+                        <div class="rs-map-legend__item">
+                            <span class="rs-legend-swatch rs-legend-swatch--partial"></span> 부분통제
+                        </div>
+                        <div class="rs-map-legend__item">
+                            <span class="rs-legend-swatch rs-legend-swatch--closed"></span> 전면통제
+                        </div>
+                    </div>
+                    <p>공원을 선택하여<br>정보를 확인해보세요.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 세로 구분 경계선 (PC 전용) -->
+        <div class="park-detail-vertical-divider"></div>
+
+        <!-- [우측 영역] 공원 상세 정보 -->
+        <div class="park-detail-right-panel" id="park-info-content">
+
+            <!-- 정중앙 미선택 불투명 안내 레이어 -->
+            <div class="pi-empty-overlay" id="park-info-empty">
+                <div class="pi-empty-text">공원을 선택해주세요.</div>
+            </div>
+
+            <!-- 공원 상세 정보 본문 -->
+            <div class="pi-detail-content" id="park-info-detail">
+                <!-- 16:9 단일 사진 영역 -->
+                <div class="pi-images-container">
+                    <div class="pi-image-box">
+                        <div class="pi-image-fallback">[사진이 없습니다]</div>
+                    </div>
+                </div>
+
+                <!-- 공원 설명 정보 -->
+                <div class="pi-info">
+                    <div class="pi-name-row">
+                        <div class="pi-name" id="pi-val-name">-</div>
+                        <span class="pi-status" id="pi-val-status">-</span>
+                    </div>
+                    <div class="pi-address" id="pi-val-address">-</div>
+                    <div class="pi-desc" id="pi-val-desc">-</div>
+                </div>
+
+                <!-- 추천 코스 목록 -->
+                <div class="pi-courses">
+                    <div class="pi-courses__title">추천 코스</div>
+                    <div class="pi-courses__list">
+
+                        <div class="pi-course-card">
+                            <span class="pi-course-card__level pi-course-card__level--low">초급</span>
+                            <div class="pi-course-card__body">
+                                <strong id="pi-course-name-1">[-]</strong>
+                                <span id="pi-course-info-1">[-]</span>
+                            </div>
+                            <div class="pi-course-card__route">
+                                <span id="pi-course-route-1">[-]</span>
+                            </div>
+                        </div>
+
+                        <div class="pi-course-card">
+                            <span class="pi-course-card__level pi-course-card__level--mid">중급</span>
+                            <div class="pi-course-card__body">
+                                <strong id="pi-course-name-2">[-]</strong>
+                                <span id="pi-course-info-2">[-]</span>
+                            </div>
+                            <div class="pi-course-card__route">
+                                <span id="pi-course-route-2">[-]</span>
+                            </div>
+                        </div>
+
+                        <div class="pi-course-card">
+                            <span class="pi-course-card__level pi-course-card__level--high">고급</span>
+                            <div class="pi-course-card__body">
+                                <strong id="pi-course-name-3">[-]</strong>
+                                <span id="pi-course-info-3">[-]</span>
+                            </div>
+                            <div class="pi-course-card__route">
+                                <span id="pi-course-route-3">[-]</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 주간 날씨 (스크롤 시각 흐름 가이드 래퍼 추가) -->
+                <div class="pi-weather">
+                    <div class="pi-weather__title">주간 날씨</div>
+                    <div class="pi-weather__grid-wrapper">
+                        <div class="pi-weather__grid" id="pi-weather-grid">
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                            <div class="pi-weather__day">
+                                <div class="pi-weather__day-name">-</div>
+                                <div class="pi-weather__ampm pi-weather__ampm--am">
+                                    <span class="pi-weather__ampm-label">오전</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                                <div class="pi-weather__ampm pi-weather__ampm--pm">
+                                    <span class="pi-weather__ampm-label">오후</span>
+                                    <span class="pi-weather__ampm-icon">-</span>
+                                    <span class="pi-weather__ampm-temp">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

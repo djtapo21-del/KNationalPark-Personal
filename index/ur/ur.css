@@ -1,0 +1,558 @@
+/* ============================================
+   통합예약 컴포넌트
+   ============================================ */
+
+.ur {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background-color: var(--color-white);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── 헤더 ─────────────────────────────────── */
+.ur__header {
+    width: calc(100% + 60px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.ur__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* ── 섹션 공통 ────────────────────────────── */
+.ur__section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ur__section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ur__step-number {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-primary);
+    background-color: var(--color-primary-soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.ur__step-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* 섹션 사이 구분선 */
+.ur__section-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 30px 0;
+}
+
+/* ── 공통 구분선 (회색) ───────────────────── */
+.ur__divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+}
+
+/* ── 01 시설 및 지역 선택 (시설 + 지역 나란히) ── */
+.ur__top {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+/* 시설 섹션 */
+.ur__facility-wrap {
+    min-width: 448px;
+}
+
+.ur__facility {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 270px;
+    gap: 10px;
+}
+
+.ur__facility-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: var(--color-white);
+    cursor: pointer;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-align: center;
+    font-family: inherit;
+}
+
+.ur__facility-item:hover {
+    background-color: var(--color-surface);
+}
+
+.ur__facility-item--active {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+
+.ur__facility-item--active:hover {
+    background-color: var(--color-primary);
+}
+
+.ur__facility-item .ur__facility-icon {
+    color: var(--color-primary);
+}
+
+.ur__facility-item--active .ur__facility-icon {
+    color: var(--color-white);
+}
+
+.ur__facility-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+/* 지역 섹션 */
+.ur__park-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.ur__park-list {
+    max-height: 270px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    gap: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background-color: var(--color-white);
+}
+
+.ur__park {
+    display: block;
+    width: 100%;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 999px;
+    background: var(--color-white);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-align: center;
+    font-family: inherit;
+}
+
+.ur__park:hover {
+    background-color: var(--color-surface);
+}
+
+.ur__park--active {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    font-weight: 600;
+}
+
+.ur__park--active:hover {
+    background-color: var(--color-primary);
+}
+
+/* ── 02 날짜 선택 ─────────────────────────── */
+.ur__calendar {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.ur__calendar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+    padding: 16px 16px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background-color: var(--color-white);
+    cursor: pointer;
+}
+
+.ur__calendar-group:hover {
+    background-color: var(--color-surface);
+}
+
+.ur__calendar-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+    align-self: flex-start;
+    pointer-events: none;
+}
+
+.ur__calendar-input {
+    width: 100%;
+    min-height: 28px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+}
+
+.ur__calendar-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+}
+
+.ur__calendar-separator {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ccc;
+    padding: 0 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* ── 03 인원 선택 ─────────────────────────── */
+.ur__people {
+    display: flex;
+    gap: 10px;
+}
+
+.ur__people-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background-color: var(--color-white);
+}
+
+.ur__people-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.ur__people-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ur__qty-button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-white);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.ur__qty-button:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.ur__qty {
+    min-width: 28px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+}
+
+/* ── 예약 문의 ────────────────────────────── */
+.ur__contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ur__contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ur__contact-time {
+    font-size: 14px;
+    color: var(--color-muted);
+    margin-bottom: 4px;
+}
+
+.ur__contact-desc {
+    font-size: 14px;
+    color: var(--color-muted);
+}
+
+.ur__contact-phone {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.ur__submit {
+    height: 46px;
+    padding: 0 28px;
+    border: 1px solid var(--color-primary);
+    border-radius: 999px;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.ur__submit:hover {
+    background-color: var(--color-surface);
+}
+
+/* ── 모바일 ───────────────────────────────── */
+@media (max-width: 1024px) {
+    .ur {
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .ur__header {
+        width: calc(100% + 48px);
+        margin: -12px -24px 20px;
+        padding: 0 24px 18px;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .ur__title {
+        font-size: 18px;
+    }
+
+    .ur__facility-wrap {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .ur__facility {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        min-height: 0;
+    }
+
+    .ur__facility-item {
+        padding: 24px 16px;
+    }
+
+    .ur__park-wrap {
+        position: relative;
+    }
+
+    .ur__park-list {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: none;
+    }
+
+    .ur__people {
+        justify-content: center;
+    }
+
+    .ur__contact {
+        gap: 8px;
+    }
+
+    .ur__contact-time {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .ur__contact-desc {
+        font-size: 12px;
+    }
+
+    .ur__contact-phone {
+        font-size: 22px;
+    }
+
+    .ur__submit {
+        width: auto;
+        padding: 0 20px;
+        height: 36px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+}
+
+/* 480px 이하 */
+@media (max-width: 480px) {
+    .ur__header {
+        width: calc(100% + 10vw);
+        margin: -2.25vw -5vw 4vw;
+        padding: 0 5vw 4vw;
+        border-bottom: 1px solid #4a7c42;
+    }
+
+    .ur__title {
+        font-size: 4.5vw;
+    }
+
+    .ur__step-number {
+        font-size: 2.71vw;
+        padding: 0.63vw 2.08vw;
+    }
+
+    .ur__step-label {
+        font-size: 3.13vw;
+    }
+
+    .ur__section-divider {
+        margin: 6.25vw 0;
+    }
+
+    .ur__facility {
+        gap: 1.67vw;
+    }
+
+    .ur__facility-item {
+        padding: 5vw 1.25vw;
+        border-radius: 4.17vw;
+        font-size: 2.7vw;
+        white-space: nowrap;
+        gap: 2.08vw;
+    }
+
+    .ur__facility-icon {
+        width: 8.33vw;
+        height: 8.33vw;
+    }
+
+    .ur__park {
+        padding: 2.08vw 5vw;
+        font-size: 2.92vw;
+        border-radius: 20.83vw;
+    }
+
+    .ur__park-list {
+        gap: 1.25vw;
+        padding: 1.25vw;
+        border-radius: 2.5vw;
+    }
+
+    .ur__calendar-group {
+        padding: 3.75vw 3.33vw 2.5vw;
+        border-radius: 2.92vw;
+        gap: 1.67vw;
+    }
+
+    .ur__calendar-label {
+        font-size: 2.92vw;
+    }
+
+    .ur__calendar-input {
+        font-size: 3.33vw;
+    }
+
+    .ur__calendar-separator {
+        font-size: 3.75vw;
+    }
+
+    .ur__people-group {
+        padding: 3.33vw;
+        border-radius: 2.92vw;
+        gap: 1.67vw;
+    }
+
+    .ur__people-label {
+        font-size: 3.13vw;
+    }
+
+    .ur__qty-button {
+        width: 7.5vw;
+        height: 7.5vw;
+        font-size: 3.33vw;
+    }
+
+    .ur__qty {
+        font-size: 3.75vw;
+    }
+
+    .ur__contact-time {
+        font-size: 2.5vw;
+    }
+
+    .ur__contact-desc {
+        font-size: 2.5vw;
+    }
+
+    .ur__contact-phone {
+        font-size: 4.58vw;
+    }
+
+    .ur__submit {
+        height: 7.5vw;
+        padding: 0 4.17vw;
+        font-size: 2.92vw;
+    }
+}

@@ -1,0 +1,1059 @@
+/* ==========================================
+   park-detail.css — 통합 국립공원 소개 콘텐츠
+   (카드 내부 글자 중앙정렬 해결본)
+========================================== */
+
+/* 1. 기본 골격 및 컨테이너 */
+.park-detail-container {
+    box-sizing: border-box;
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    border: 1px solid #e2e2e2;
+    border-radius: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.park-detail-container__header {
+    padding: 30px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.park-detail-container__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    text-align: left;
+}
+
+.park-detail-container__body {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* 2. 좌/우 패널 분할 */
+.park-detail-left-panel {
+    flex: 0 0 510px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.park-detail-vertical-divider {
+    width: 1px;
+    background: #e2e2e2;
+    align-self: stretch;
+}
+
+.park-detail-right-panel {
+    flex: 1;
+    padding: 30px;
+    box-sizing: border-box;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3. 지역선택 드롭다운 및 리스트 */
+.rs-controls-wrapper {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: stretch;
+}
+
+.rs-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-start;
+}
+
+.rs-select {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 36px 0 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.rs-select:hover {
+    border-color: #4a7c42;
+}
+
+/* 리스트 컨테이너 */
+.rs-list-container {
+    flex: 1;
+    min-width: 0;
+    height: 90px;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    padding: 0;
+    position: relative;
+}
+
+.rs-list-container::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 24px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.rs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* 스크롤바 숨김 */
+}
+
+.rs-list::-webkit-scrollbar {
+    display: none !important;
+}
+
+.rs-list-item {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a7c42;
+    border: 1px solid #4a7c42;
+    border-radius: 999px;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    line-height: 1;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rs-list-item:hover,
+.rs-list-item--active {
+    background: #4a7c42;
+    color: #fff;
+}
+
+.rs-list-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 14px;
+    color: #999;
+}
+
+.rs-divider {
+    box-sizing: border-box;
+    width: calc(100% + 60px);
+    margin: 0 -30px 30px;
+    border-bottom: 1px solid #e2e2e2;
+    height: 0;
+}
+
+/* 4. 지도 및 마커 영역 */
+.rs-map-area {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.rs-map-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    user-select: none;
+    pointer-events: none;
+}
+
+.rs-map-guide {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    pointer-events: none;
+}
+
+.rs-map-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rs-map-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+.rs-legend-swatch {
+    width: 26px;
+    height: 12px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+}
+
+.rs-legend-swatch--normal {
+    background: #e8f6e9;
+    border-color: #4a7c42;
+}
+
+.rs-legend-swatch--closed {
+    background: #ffeded;
+    border-color: #e74c3c;
+}
+
+.rs-legend-swatch--partial {
+    background: #fff8ee;
+    border-color: #f1731f;
+}
+
+.rs-map-guide p {
+    font-size: 14px;
+    color: #4a7c42;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 600;
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 15px;
+    border: 1px solid #7aaa6e;
+    text-align: center;
+}
+
+.rs-park-marker {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 16px;
+    line-height: 1;
+    white-space: nowrap;
+    background: #fff;
+    border: 1px solid #4a7c42;
+    border-radius: 999px;
+    color: #4a7c42;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.rs-park-marker:hover,
+.rs-park-marker--active {
+    background: #4a7c42;
+    color: #fff;
+    z-index: 11;
+}
+
+.rs-park-marker[data-status="closed"] {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.rs-park-marker[data-status="closed"]:hover,
+.rs-park-marker[data-status="closed"].rs-park-marker--active {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.rs-park-marker[data-status="partial"] {
+    border-color: #f1731f;
+    color: #f1731f;
+}
+
+.rs-park-marker[data-status="partial"]:hover,
+.rs-park-marker[data-status="partial"].rs-park-marker--active {
+    background: #f1731f;
+    color: #fff;
+}
+
+/* 국립공원 마커 위치 값 */
+.rs-park-marker[data-park-id="seorak"] {
+    top: 8%;
+    left: 70%;
+}
+
+.rs-park-marker[data-park-id="odae"] {
+    top: 17%;
+    left: 75%;
+}
+
+.rs-park-marker[data-park-id="bukhan"] {
+    top: 20%;
+    left: 35%;
+}
+
+.rs-park-marker[data-park-id="chiak"] {
+    top: 24%;
+    left: 62%;
+}
+
+.rs-park-marker[data-park-id="soakri"] {
+    top: 35%;
+    left: 57%;
+}
+
+.rs-park-marker[data-park-id="taebaek"] {
+    top: 24%;
+    left: 85%;
+}
+
+.rs-park-marker[data-park-id="sobaek"] {
+    top: 32%;
+    left: 80%;
+}
+
+.rs-park-marker[data-park-id="worak"] {
+    top: 30%;
+    left: 63%;
+}
+
+.rs-park-marker[data-park-id="taean"] {
+    top: 35%;
+    left: 18%;
+}
+
+.rs-park-marker[data-park-id="gyeryong"] {
+    top: 42%;
+    left: 44%;
+}
+
+.rs-park-marker[data-park-id="juwang"] {
+    top: 42%;
+    left: 85%;
+}
+
+.rs-park-marker[data-park-id="palgong"] {
+    top: 48%;
+    left: 75%;
+}
+
+.rs-park-marker[data-park-id="deogyu"] {
+    top: 51%;
+    left: 48%;
+}
+
+.rs-park-marker[data-park-id="gyeongju"] {
+    top: 53%;
+    left: 87%;
+}
+
+.rs-park-marker[data-park-id="gaya"] {
+    top: 56%;
+    left: 61%;
+}
+
+.rs-park-marker[data-park-id="byeonsan"] {
+    top: 50%;
+    left: 15%;
+}
+
+.rs-park-marker[data-park-id="naejang"] {
+    top: 55%;
+    left: 30%;
+}
+
+.rs-park-marker[data-park-id="jiri"] {
+    top: 61%;
+    left: 52%;
+}
+
+.rs-park-marker[data-park-id="mudeung"] {
+    top: 65%;
+    left: 15%;
+}
+
+.rs-park-marker[data-park-id="wolchul"] {
+    top: 71%;
+    left: 31%;
+}
+
+.rs-park-marker[data-park-id="hallyeo"] {
+    top: 72%;
+    left: 60%;
+}
+
+.rs-park-marker[data-park-id="dadohae"] {
+    top: 78%;
+    left: 24%;
+}
+
+.rs-park-marker[data-park-id="halla"] {
+    top: 88%;
+    left: 18%;
+}
+
+/* 5. 우측 상세정보 오버레이 및 사진, 텍스트 */
+.pi-empty-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+}
+
+.pi-empty-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #555;
+    text-align: center;
+    background: #fff;
+    border: 2px solid #e2e2e2;
+    border-radius: 14px;
+    padding: 16px 36px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    letter-spacing: -0.5px;
+}
+
+.pi-detail-content--hidden {
+    display: none !important;
+}
+
+.pi-images-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.pi-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.pi-image-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    box-sizing: border-box;
+}
+
+.pi-info {
+    margin-bottom: 20px;
+}
+
+.pi-name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pi-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.pi-status {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.pi-status--normal {
+    background: #e8f6e9;
+    color: #4a7c42;
+}
+
+.pi-status--partial {
+    background: #fff8ee;
+    color: #f1731f;
+}
+
+.pi-status--closed {
+    background: #ffeded;
+    color: #e74c3c;
+}
+
+.pi-address {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.pi-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 6. 추천 코스 목록 */
+.pi-courses {
+    border-top: 1px solid #e2e2e2;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.pi-courses__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.pi-courses__list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pi-course-card {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e2e2e2;
+    border-radius: 16px;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.pi-course-card:hover {
+    background-color: #f7f7f7;
+}
+
+.pi-course-card__body {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+.pi-course-card__body strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.pi-course-card__body span {
+    display: block;
+    font-size: 14px;
+    color: #777;
+}
+
+.pi-course-card__route {
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a7c42;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.pi-course-card__level {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.pi-course-card__level--low {
+    background: #e8f6e9;
+    color: #4a7c42;
+}
+
+.pi-course-card__level--mid {
+    background: #fff9e6;
+    color: #b8860b;
+}
+
+.pi-course-card__level--high {
+    background: #ffe8e8;
+    color: #c0392b;
+}
+
+/* 7. 주간 날씨 (가로 스크롤 및 글자 가로 중앙정렬 해결) */
+.pi-weather {
+    border-top: 1px solid #e2e2e2;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.pi-weather__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.pi-weather__grid-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.pi-weather__grid-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 4px;
+    width: 50px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pi-weather__grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* 날씨 카드 스크롤바 숨김 */
+
+    /* [추가] 브라우저 차원의 드래그 블록 지정을 영구 비활성화 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.pi-weather__grid::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* [해결] 텍스트가 무조건 정가운데 배치되도록 text-align: center; 부여 */
+.pi-weather__day {
+    flex-shrink: 0;
+    width: 125px;
+    box-sizing: border-box;
+    background: #f7f7f7;
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    /* 카드 안의 글자를 모두 가로 중앙으로 보냅니다 */
+}
+
+/* [해결] 날짜 텍스트 중앙 정렬 */
+.pi-weather__day-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 6px;
+    margin: 0 0 10px 0;
+    text-align: center;
+    /* 날짜 제목을 가로 중앙으로 정렬합니다 */
+    width: 100%;
+}
+
+/* [해결] 기상 아이콘 및 온도 중앙 정렬 */
+.pi-weather__ampm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex 자식 요소들을 가로 중앙으로 모읍니다 */
+    gap: 6px;
+    font-size: 13px;
+    color: #444;
+    margin: 0;
+    width: 100%;
+}
+
+.pi-weather__ampm--am {
+    margin-bottom: 8px;
+}
+
+.pi-weather__ampm-label {
+    font-size: 12px;
+    color: #777;
+    font-weight: 600;
+}
+
+.pi-weather__ampm-icon {
+    font-size: 16px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+.pi-weather__ampm-temp {
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* ==========================================
+   태블릿 반응형 (1024px 이하)
+========================================== */
+@media (max-width: 1024px) {
+    .park-detail-container {
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        width: 100%;
+    }
+
+    .park-detail-container__header,
+    .park-detail-vertical-divider {
+        display: none;
+    }
+
+    .park-detail-container__body {
+        flex-direction: column;
+        gap: 10px;
+        background: var(--color-surface, #f7f7f7);
+    }
+
+    .park-detail-left-panel,
+    .park-detail-right-panel {
+        flex: none;
+        width: 100%;
+        background: #fff;
+        padding: 30px 24px;
+    }
+
+    .rs-divider {
+        width: calc(100% + 48px);
+        margin: 0 -24px 20px;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .rs-park-marker {
+        font-size: 14px;
+        padding: 5px 12px;
+    }
+
+    .rs-map-guide {
+        bottom: 2%;
+        right: 2%;
+        gap: 15px;
+    }
+
+    .rs-map-legend__item,
+    .rs-map-guide p {
+        font-size: 14px;
+    }
+
+    .rs-legend-swatch {
+        width: 22px;
+        height: 10px;
+    }
+
+    .rs-map-guide p {
+        padding: 8px 14px;
+    }
+
+    .pi-empty-overlay {
+        border-radius: 0;
+    }
+
+    .pi-image-box {
+        aspect-ratio: 16 / 9;
+    }
+
+    .pi-name {
+        font-size: 20px;
+    }
+
+    .pi-weather__day {
+        width: 125px;
+        padding: 16px 14px;
+    }
+}
+
+/* ==========================================
+   모바일 반응형 (480px 이하) - vw 단위 대응 및 마진 균등화
+========================================== */
+@media (max-width: 480px) {
+
+    .park-detail-left-panel,
+    .park-detail-right-panel {
+        padding: 5vw;
+    }
+
+    .rs-controls-wrapper {
+        margin-bottom: 5vw;
+        gap: 3vw;
+    }
+
+    .rs-filter-group {
+        gap: 2.08vw;
+    }
+
+    .rs-select {
+        font-size: 3.5vw;
+        height: 9vw;
+        padding: 0 3vw;
+        border-radius: 2vw;
+        background-position: right 3vw center;
+        padding-right: 8vw;
+    }
+
+    .rs-list-container {
+        height: 20.08vw !important;
+        padding: 0;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
+
+    .rs-list-container::after {
+        height: 5vw;
+    }
+
+    .rs-list {
+        gap: 1.25vw;
+        padding-right: 1vw;
+    }
+
+    .rs-list-item {
+        font-size: 3vw;
+        padding: 1.5vw 3vw;
+    }
+
+    .rs-divider {
+        width: calc(100% + 10vw);
+        margin: 0 -5vw 4vw;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .rs-park-marker {
+        font-size: 2.92vw;
+        padding: 1.04vw 2.5vw;
+    }
+
+    .rs-map-guide {
+        bottom: 4.17vw;
+        right: 4.17vw;
+        gap: 3.13vw;
+    }
+
+    .rs-map-legend__item,
+    .rs-map-guide p,
+    .pi-image-fallback {
+        font-size: 2.92vw;
+    }
+
+    .rs-legend-swatch {
+        width: 4.58vw;
+        height: 2.08vw;
+    }
+
+    .rs-map-guide p {
+        padding: 2.08vw 3.33vw;
+        border-radius: 3.13vw;
+    }
+
+    .pi-empty-text {
+        font-size: 4.17vw;
+        border-radius: 2.92vw;
+        padding: 3.33vw 7.5vw;
+        border-width: 0.42vw;
+        box-shadow: 0 1.67vw 5vw rgba(0, 0, 0, 0.08);
+    }
+
+    .pi-empty-overlay {
+        border-radius: 0;
+    }
+
+    .pi-image-box {
+        aspect-ratio: 16 / 9;
+        border-radius: 2.5vw;
+    }
+
+    .pi-name-row {
+        gap: 2.5vw;
+        margin-bottom: 2.5vw;
+    }
+
+    .pi-name {
+        font-size: 4.58vw;
+    }
+
+    .pi-status {
+        padding: 0.83vw 2.08vw;
+        font-size: 2.5vw;
+        border-radius: 20.83vw;
+    }
+
+    .pi-address {
+        font-size: 2.92vw;
+        margin-bottom: 1.25vw;
+    }
+
+    .pi-desc {
+        font-size: 2.92vw;
+        line-height: 1.6;
+    }
+
+    .pi-courses {
+        border-top: 0.21vw solid #e2e2e2;
+        padding-top: 4.17vw;
+        margin-top: 4.17vw;
+    }
+
+    .pi-courses__title {
+        font-size: 3.33vw;
+        margin-bottom: 2.5vw;
+    }
+
+    .pi-courses__list {
+        gap: 2.92vw;
+    }
+
+    .pi-course-card {
+        padding: 2.92vw 3.33vw;
+        border-radius: 3.33vw;
+        gap: 2.5vw;
+    }
+
+    .pi-course-card__body strong {
+        font-size: 3.33vw;
+        margin-bottom: 1.25vw;
+    }
+
+    .pi-course-card__body span {
+        font-size: 2.92vw;
+    }
+
+    .pi-course-card__route {
+        padding: 1.25vw 2.5vw;
+        font-size: 2.71vw;
+        border-radius: 20.83vw;
+    }
+
+    .pi-course-card__level {
+        font-size: 2.71vw;
+        padding: 1.25vw 2.08vw;
+        border-radius: 20.83vw;
+    }
+
+    .pi-weather {
+        border-top: 0.21vw solid #e2e2e2;
+        padding-top: 4.17vw;
+        margin-top: 4.17vw;
+    }
+
+    .pi-weather__title {
+        font-size: 3.33vw;
+        margin-bottom: 2.5vw;
+    }
+
+    .pi-weather__grid-wrapper::after {
+        width: 10vw;
+        bottom: 0;
+    }
+
+    .pi-weather__grid {
+        gap: 1.25vw;
+        padding-bottom: 0;
+    }
+
+    /* 모바일 날씨 카드 패딩 및 갭 복원 */
+    .pi-weather__day {
+        width: 26vw;
+        padding: 3vw;
+        border-radius: 2.08vw;
+    }
+
+    .pi-weather__day-name {
+        font-size: 2.71vw;
+        margin: 0 0 2vw 0;
+        padding-bottom: 1.25vw;
+        border-bottom: 0.21vw solid #e2e2e2;
+    }
+
+    .pi-weather__ampm {
+        gap: 1vw;
+        font-size: 2.5vw;
+        margin: 0;
+    }
+
+    .pi-weather__ampm--am {
+        margin-bottom: 1.5vw;
+    }
+
+    .pi-weather__ampm-label {
+        font-size: 2.29vw;
+    }
+
+    .pi-weather__ampm-icon {
+        font-size: 2.92vw;
+    }
+
+    .pi-weather__ampm-temp {
+        font-size: 2.5vw;
+    }
+}

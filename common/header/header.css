@@ -1,0 +1,550 @@
+/* header.css */
+.site-header {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    position: relative;
+    z-index: 1000;
+}
+
+.header-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 56px;
+    align-items: center;
+    gap: 24px;
+    height: 80px;
+    position: relative;
+}
+
+
+.logo {
+    padding: 8px 0;
+    justify-self: start;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: auto;
+    height: 36px;
+}
+
+/* GNB 네비게이션 영역 */
+.gnb-nav {
+    height: 100%;
+    min-width: 0;
+    justify-self: center;
+}
+
+.gnb {
+    display: flex;
+    height: 100%;
+    gap: clamp(14px, 2.6vw, 38px);
+}
+
+.gnb>li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.gnb>li>.main-link {
+    color: #333;
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.main-link__icon {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+.gnb>li>.main-link:hover {
+    color: #4a7c42;
+}
+
+.gnb>li.active>.main-link {
+    color: #4a7c42;
+    font-weight: 700;
+}
+
+/* 서브 메뉴 (기본 숨김) - 가로 1200px 전체 너비 바 형태 */
+.sub-menu {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 0 0 12px 12px;
+
+    padding: 30px 50px;
+    display: flex;
+    justify-content: center;
+    gap: clamp(24px, 5vw, 60px);
+    white-space: nowrap;
+
+}
+
+/* active 클래스가 있을 때 서브메뉴 표시 */
+.gnb>li.active .sub-menu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sub-menu li a {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+}
+
+.sub-menu li a:hover {
+    color: #4a7c42;
+    font-weight: 700;
+}
+
+.header-actions {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.header-search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    color: #4a7c42;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.header-search:hover {
+    background-color: #4a7c42;
+}
+
+.header-search:hover .header-search__icon {
+    filter: brightness(0) invert(1);
+}
+
+.header-search__icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* close 아이콘은 기본(PC)에서 숨김 */
+.header-search__icon--close {
+    display: none;
+}
+
+/* 검색 바 - GNB 아래 펼쳐짐 (absolute로 다른 요소 밀지 않음) */
+.header-search-bar {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e2e2e2;
+    z-index: 1001;
+}
+
+.header-search-bar--open {
+    display: block;
+}
+
+.header-search-bar__inner {
+    width: 600px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    box-sizing: border-box;
+}
+
+.header-search-bar__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-search-bar__icon-img {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.header-search-bar__input {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 2px solid #4a7c42;
+    background: transparent;
+    font-size: 15px;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.header-search-bar__input::placeholder {
+    color: #777;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+/* ================================
+   모바일 전용 메뉴 스타일 (768px 이하)
+   PC 스타일과 완전히 독립적
+   ================================ */
+@media (max-width: 1024px) {
+
+    /* 헤더 기본 스타일 재설정 */
+    .header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 12px 20px;
+        gap: 0;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        /* header-actions absolute 기준점 */
+    }
+
+    .header-actions {
+        position: absolute;
+        top: 14px;
+        right: 20px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        z-index: 1003;
+    }
+
+    .header-search {
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+
+    /* 로고 영역 */
+    .logo {
+        align-self: flex-start;
+        margin: 0 auto 0 0;
+    }
+
+    .logo img {
+        height: 32px;
+    }
+
+    /* 모바일 검색바 - 로고 영역만 덮음 */
+    .header-search-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 56px;
+        background-color: #ffffff;
+        z-index: 1002;
+        border-bottom: none;
+    }
+
+    .header-search-bar__inner {
+        width: 100%;
+        max-width: 100%;
+        height: 56px;
+        padding: 0 72px 0 20px;
+        /* 좌측 20px: header-inner padding과 동일 */
+        margin: 0;
+        gap: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .header-search-bar__icon {
+        display: none;
+    }
+
+    .header-search-bar__input {
+        font-size: 15px;
+        padding: 4px 0 0 0;
+        /* 위쪽 4px 추가 → 터치 영역 아래로 */
+        line-height: 56px;
+    }
+
+    /* 네비게이션 컨테이너 */
+    .gnb-nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        padding-top: 10px;
+        padding-bottom: 0;
+        /* 모바일에서 마지막 메인메뉴 아래 불필요한 여백 제거 */
+        margin-bottom: 0;
+        border-top: 1px solid #e2e2e2;
+    }
+
+    /* 메인 메뉴 - 세로 버튼식 */
+    .gnb {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        width: 100%;
+        height: auto;
+        justify-content: auto;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .gnb>li {
+        height: auto !important;
+        width: 100%;
+        display: block;
+        margin: 0;
+    }
+
+    .gnb>li>.main-link {
+        position: relative;
+        font-size: 13px;
+        padding: 12px 4px;
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-align: center;
+        background-color: #f5f5f5;
+        border-radius: 20px;
+        border: none;
+        aspect-ratio: 1 / 1;
+        transition: none;
+    }
+
+    .main-link__icon {
+        display: block;
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .main-link__text {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.2;
+    }
+
+    .gnb>li>.main-link:hover,
+    .gnb>li.active>.main-link {
+        background-color: #4a7c42;
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+    .gnb>li>.main-link:hover .main-link__icon,
+    .gnb>li.active .main-link__icon {
+        filter: brightness(0) invert(1);
+    }
+
+    .gnb>li>.main-link:hover .main-link__text,
+    .gnb>li.active .main-link__text {
+        color: #ffffff;
+    }
+
+    /* 서브메뉴 - 숨김 상태가 기본 */
+    .sub-menu {
+        position: absolute;
+        top: var(--submenu-top, calc(100% + 4px));
+        left: -20px;
+        width: calc(100% + 40px);
+        transform: none;
+        visibility: hidden;
+        opacity: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 12px 20px;
+        margin-top: 0;
+        background-color: #ffffff;
+        border-top: 1px solid #e2e2e2;
+        border-bottom: 1px solid #1f5c2c;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        max-height: none;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 20;
+        transition: none;
+    }
+
+    /* active 상태일 때 서브메뉴 표시 */
+    .gnb>li.active .sub-menu {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sub-menu li {
+        width: 100%;
+    }
+
+    .sub-menu li a {
+        position: relative;
+        font-size: 14px;
+        padding: 12px 16px;
+        display: block;
+        text-align: center;
+        background-color: #f5f5f5;
+        border: none;
+        border-radius: 999px;
+        transition: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .sub-menu li a:hover {
+        background-color: #4a7c42;
+        color: #ffffff;
+    }
+}
+
+/* ==========================================
+   480px 이하 — 1024px 기준에서 vw로 축소
+========================================== */
+@media (max-width: 480px) {
+    .header-inner {
+        padding: 2.5vw 4.17vw;
+        height: auto;
+    }
+
+    .header-actions {
+        top: 2.92vw;
+        right: 4.17vw;
+        height: 8.33vw;
+    }
+
+    .header-search {
+        min-width: 8.33vw;
+        width: 8.33vw;
+        height: 8.33vw;
+    }
+
+    .header-search__icon {
+        width: 4.17vw;
+        height: 4.17vw;
+    }
+
+    .logo img {
+        height: 6.67vw;
+    }
+
+    .header-search-bar {
+        height: 11.67vw;
+    }
+
+    .header-search-bar__inner {
+        height: 11.67vw;
+        padding: 0 15vw 0 4.17vw;
+    }
+
+    /* 입력 필드 하단 선 두께 및 글자 크기 비율 축소 적용 */
+    .header-search-bar__input {
+        font-size: 3.13vw;
+        padding: 0.83vw 0 0 0;
+        line-height: 11.67vw;
+        border-bottom: 0.42vw solid #4a7c42;
+        /* 밑줄 선 두께 가변 축소 */
+    }
+
+    /* 돋보기 창 플레이스홀더 글자 크기도 기기 너비에 맞춰 축소 */
+    .header-search-bar__input::placeholder {
+        font-size: 2.92vw;
+    }
+
+    .gnb-nav {
+        margin-top: 2.08vw;
+        padding-top: 2.08vw;
+    }
+
+    .gnb {
+        gap: 1.25vw;
+    }
+
+    .gnb>li>.main-link {
+        font-size: 2.71vw;
+        padding: 2.5vw 0.83vw;
+        gap: 1.25vw;
+        border-radius: 4.17vw;
+    }
+
+    .main-link__icon {
+        width: 4.58vw;
+        height: 4.58vw;
+    }
+
+    .main-link__text {
+        font-size: 2.92vw;
+    }
+
+    .sub-menu {
+        left: -4.17vw;
+        width: calc(100% + 8.33vw);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.67vw;
+        padding: 2.5vw 4.17vw;
+        border-bottom: 0.21vw solid #1f5c2c;
+    }
+
+    .sub-menu li a {
+        font-size: 2.92vw;
+        padding: 2.5vw 3.33vw;
+        border-radius: 20.83vw;
+    }
+
+    .sub-menu li a:hover {
+        background-color: #4a7c42;
+        color: #ffffff;
+    }
+}
