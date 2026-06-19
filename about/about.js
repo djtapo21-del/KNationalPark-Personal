@@ -2,9 +2,8 @@
 const COMPONENT_ERROR_HTML = '<p class="component-load-error" role="alert">콘텐츠를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
 
 const components = [
-    { id: 'header-placeholder', url: '../common/header/header.html', init: 'initHeader' },
-    { id: 'footer-placeholder', url: '../common/footer/footer.html', init: 'initFooter' },
-    /* park-detail 컴포넌트 맵핑 및 초기화 함수 갱신 */
+    { id: 'header-placeholder', url: './common/header/header.html', init: 'initHeader' },
+    { id: 'footer-placeholder', url: './common/footer/footer.html', init: 'initFooter' },
     { id: 'park-detail-placeholder', url: './park-detail/park-detail.html', init: 'initParkDetail' },
 ];
 
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadSvgSprite() {
     try {
-        const response = await fetch('../common/svg-sprite/svg-sprite.html');
+        const response = await fetch('./common/svg-sprite/svg-sprite.html');
         if (!response.ok) throw new Error('svg-sprite load failed');
         const wrapper = document.createElement('div');
         wrapper.style.position = 'absolute';
