@@ -2,8 +2,8 @@
 const COMPONENT_ERROR_HTML = '<p class="component-load-error" role="alert">콘텐츠를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
 
 const components = [
-    { id: 'header-placeholder', url: './common/header/header.html', init: 'initHeader' },
-    { id: 'footer-placeholder', url: './common/footer/footer.html', init: 'initFooter' },
+    { id: 'header-placeholder', url: '../common/header/header.html', init: 'initHeader' },
+    { id: 'footer-placeholder', url: '../common/footer/footer.html', init: 'initFooter' },
     { id: 'park-detail-placeholder', url: './park-detail/park-detail.html', init: 'initParkDetail' },
 ];
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function loadSvgSprite() {
     try {
-        const response = await fetch('./common/svg-sprite/svg-sprite.html');
+        const response = await fetch('../common/svg-sprite/svg-sprite.html');
         if (!response.ok) throw new Error('svg-sprite load failed');
         const wrapper = document.createElement('div');
         wrapper.style.position = 'absolute';
@@ -38,7 +38,12 @@ async function loadComponent({ id, url, init }) {
     try {
         const r = await fetch(url);
         if (!r.ok) throw new Error('load failed');
-        el.innerHTML = await r.text();
+        let text = await r.text();
+
+        // 하위 폴더(/about/) 깊이에 맞게 공통 컴포넌트 내부의 상대 경로를 동적으로 자동 변환 (./ -> ../)
+        text = text.replace(/=(["'])\.\/(images|about|index\.html|reservation\.html|resources\.html|media\.html|service\.html)/g, '=$1../$2');
+
+        el.innerHTML = text;
         if (typeof init === 'string' && typeof window[init] === 'function') window[init]();
     } catch (e) {
         console.error('[component]', id, e);
