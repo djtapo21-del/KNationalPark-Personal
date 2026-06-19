@@ -6,7 +6,7 @@ function getSigunguList(sido) {
     return [...new Set(parkData.filter(p => !sido || p.sido === sido).map(p => p.sigungu))];
 }
 
-// 우측 상세 정보 데이터 매핑 함수 (HTML 하드코딩 없음)
+// 우측 상세 정보 데이터 매핑 함수
 window.renderParkInfo = function (park, container) {
     const statusText = { '': '정상', 'partial': '부분통제', 'closed': '전면통제' };
 
@@ -35,10 +35,14 @@ window.renderParkInfo = function (park, container) {
         statusEl.classList.add(`pi-status--${park.status || 'normal'}`);
     }
 
-    // 4. 고정 코스명 매핑 (산/공원 이름 접두사 일절 미포함)
+    // 4. 추천 코스명 및 세부 정보 매핑
     const courseName1 = document.getElementById('pi-course-name-1');
     const courseName2 = document.getElementById('pi-course-name-2');
     const courseName3 = document.getElementById('pi-course-name-3');
+
+    const courseInfo1 = document.getElementById('pi-course-info-1');
+    const courseInfo2 = document.getElementById('pi-course-info-2');
+    const courseInfo3 = document.getElementById('pi-course-info-3');
 
     const courseRoute1 = document.getElementById('pi-course-route-1');
     const courseRoute2 = document.getElementById('pi-course-route-2');
@@ -47,6 +51,10 @@ window.renderParkInfo = function (park, container) {
     if (courseName1) courseName1.textContent = '둘레길 안성맞춤 순환로';
     if (courseName2) courseName2.textContent = '자연 경관 탐방 코스';
     if (courseName3) courseName3.textContent = '능선 정복 탐방로';
+
+    if (courseInfo1) courseInfo1.textContent = '약 2시간 · 약 3km';
+    if (courseInfo2) courseInfo2.textContent = '약 3.5시간 · 약 6km';
+    if (courseInfo3) courseInfo3.textContent = '약 5시간 · 약 10km';
 
     if (courseRoute1) courseRoute1.textContent = '출발지점 → 비룡폭포';
     if (courseRoute2) courseRoute2.textContent = '사찰입구 → 마당바위';
@@ -109,7 +117,7 @@ window.selectPark = function (parkId) {
     renderParkInfo(park, infoContainer);
 };
 
-// 통합 초기화 컨트롤러 (about.js 로더가 실행)
+// 통합 초기화 컨트롤러
 function initParkDetail() {
     const sidoSelect = document.getElementById('rs-sido');
     const sigunguSelect = document.getElementById('rs-sigungu');
@@ -251,7 +259,7 @@ function initParkDetail() {
     }
 }
 
-// PC 환경용 가로 드래그 및 마우스 휠 리다이렉트 제어 함수 (보완 적용 완료)
+// PC 환경용 가로 드래그 및 마우스 휠 리다이렉트 제어 함수
 function initDesktopDragAndWheelScroll(slider) {
     let isDown = false;
     let startX;
@@ -259,22 +267,17 @@ function initDesktopDragAndWheelScroll(slider) {
 
     slider.style.cursor = 'grab';
 
-    // 1. 드래그 중 이미지 움직임 및 글자 블록 지정을 원천적으로 차단
     slider.addEventListener('dragstart', (e) => e.preventDefault());
     slider.addEventListener('selectstart', (e) => e.preventDefault());
 
     slider.addEventListener('mousedown', (e) => {
         isDown = true;
         slider.style.cursor = 'grabbing';
-
-        // [중요] 마우스 다운 시 브라우저 기본 동작(드래그 블록지정) 차단
         e.preventDefault();
-
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
     });
 
-    // 2. [수정] 감지 대상을 document로 확대하여, 박스 영역을 완전히 이탈한 시점에서도 마우스 풀림 상태를 완벽 검출
     document.addEventListener('mouseup', () => {
         if (!isDown) return;
         isDown = false;
@@ -285,11 +288,10 @@ function initDesktopDragAndWheelScroll(slider) {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5; // 스크롤 감도 계수
+        const walk = (x - startX) * 1.5;
         slider.scrollLeft = scrollLeft - walk;
     });
 
-    // 3. 수직 마우스 휠 동작을 수평 스크롤로 리다이렉트하는 로직
     slider.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
             e.preventDefault();
