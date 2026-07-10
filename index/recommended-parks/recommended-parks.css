@@ -137,19 +137,19 @@
     }
 
     .park-card--seorak {
-        background-image: url('../images/park-card--seorak-poster.jpg');
+        background-image: url('../../images/park-card--seorak-poster.jpg');
     }
 
     .park-card--jiri {
-        background-image: url('../images/park-card--jiri-poster.jpg');
+        background-image: url('../../images/park-card--jiri-poster.jpg');
     }
 
     .park-card--hallyeo {
-        background-image: url('../images/park-card--hallyeo-poster.jpg');
+        background-image: url('../../images/park-card--hallyeo-poster.jpg');
     }
 
     .park-card--taebaek {
-        background-image: url('../images/park-card--taebaek-poster.jpg');
+        background-image: url('../../images/park-card--taebaek-poster.jpg');
     }
 
     .park-card {
